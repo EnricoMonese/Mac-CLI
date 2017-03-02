@@ -75,7 +75,7 @@ case "$fn" in
             if [ "$echocommand" == "true" ]; then
                 echo "${GREEN}ipconfig getifaddr en1\n\n${NC}"
             fi
-            local_ip=$(ipconfig getifaddr en1)
+            local_ip=$(ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')
         fi
         echo "Your IP address is:\n${local_ip}"
     ;;
